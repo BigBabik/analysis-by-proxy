@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Analysis-by-Proxy</title>
+
+  <meta name="description" content="Analysis-by-Proxy: Localization Signals in VLMs Operating as Condition Encoders">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Analysis-by-Proxy: Localization Signals in VLMs Operating as Condition Encoders</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              Yoav Baron<sup>1</sup>&nbsp &nbsp
+            </span>
+
+            <span class="author-block">
+              Sara Dorfman<sup>1</sup>&nbsp &nbsp
+            </span>
+
+            <span class="author-block">
+              Roni Paiss<sup>2</sup>&nbsp &nbsp
+            </span>
+
+            <span class="author-block">
+              <a href="https://danielcohenor.com/">Daniel Cohen-Or</a><sup>1,3</sup>&nbsp &nbsp
+            </span>
+
+            <span class="author-block">
+              <a href="https://orpatashnik.github.io/">Or Patashnik</a><sup>1,3</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Tel Aviv University</span> &nbsp &nbsp
+            <span class="author-block"><sup>2</sup>Google DeepMind</span> &nbsp &nbsp
+            <span class="author-block"><sup>3</sup>Snap Research</span>
+          </div>
+
+          <br>
+          <div>
+            <h1 class="title">ICML 2026 — Mechanistic Interpretability Workshop</h1>
+          </div>
+          <br>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- arXiv Link. TODO: replace href with the arXiv abstract URL once posted. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. TODO: replace href with the code repository URL. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+        <img src="static/images/teaser.png">
+      <h2 class="subtitle has-text-centered">
+        When a Vision-Language Model (VLM) is used as a <i>condition encoder</i> in an editing pipeline, it runs in a single forward pass and localization can fail.
+        The same VLM, allowed to generate autoregressively over multiple passes, localizes the target correctly.
+        We study this gap with <i>Analysis-by-Proxy</i>.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section hero is-light is-small">
+    <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Vision-Language Models (VLMs) are increasingly utilized as the conditioning backbone for diffusion-based image editing due to their remarkable multimodal reasoning capabilities.
+            While standalone VLMs demonstrate strong localization capabilities, editing pipelines frequently struggle to maintain this accuracy, particularly in complex, multi-entity scenes.
+            In this work, we investigate this performance gap, hypothesizing that it stems from treating the VLM as a <em>condition encoder</em>.
+            In this role, the model is restricted to a single forward pass, preventing the autoregressive generation process for which it was optimized, thereby failing to fully expose its capabilities.
+            To investigate whether this spatial understanding persists when the VLM is used as a condition encoder, we introduce <i>Analysis-by-Proxy</i>. In this framework, we train a lightweight, interpretable <i>proxy</i> model on the VLM's intermediate representations using an auxiliary localization task.
+            By analyzing the VLM through this proxy, we uncover the specific VLM representations that encode localization information.
+            Our findings expose a fundamental mismatch between how spatial knowledge is represented within a VLM condition encoder and how it is extracted by current editing pipelines.
+            We reveal that under single-pass constraints, the localization signal does not reliably propagate to the predefined layer configurations commonly used for conditioning.
+            Instead, this crucial signal remains hidden within intermediate representations, at locations that vary depending on the input prompt.
+            Using our introduced <i>Analysis-by-Proxy</i> framework, we reveal the fundamental failures of existing condition extraction strategies in editing pipelines, opening the door to more principled design of conditioning architectures.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section hero is-small is-centered" style="align-content: center;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <h2 class="title is-3">The Analysis-by-Proxy Framework</h2>
+      <img src="static/images/proxy_training.png" style="width: 80%;">
+      <div class="content has-text-justified is-centered">
+        <ul class="column is-centered has-text-justified">
+          <li>
+            We keep the VLM <b>frozen</b> and extract its intermediate hidden states for a given image and prompt.
+          </li>
+          <li>
+            A lightweight, trainable <i>proxy</i> reads these representations and predicts object bounding-box coordinates, supervised with a combined <b>GIoU + L1</b> localization loss.
+          </li>
+          <li>
+            Because the proxy only sees a single layer/token slice of the VLM at a time, its accuracy acts as a <b>readout</b> of how much localization signal is present at that location in the network.
+          </li>
+        </ul>
+      </div>
+      <br>
+      <img src="static/images/proxy_arch.png" style="width: 65%;">
+      <div class="content has-text-justified is-centered">
+        <p style="text-align: center;">
+          The proxy is a small transformer with learned queries that cross-attend to the VLM hidden states, followed by a coordinates head that regresses the bounding box.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<section class="section hero is-light is-small is-centered" style="align-content: center;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <h2 class="title is-3">Locating the Localization Signal</h2>
+      <img src="static/images/method.png" style="width: 100%;">
+      <div class="content has-text-justified is-centered">
+        <p>
+          Probing the VLM through the proxy, we trace where localization information lives inside the condition encoder.
+          We find that, under single-pass constraints, the signal does <b>not</b> reliably reach the predefined layer configurations commonly tapped for conditioning.
+          Instead it remains hidden within intermediate representations, at locations that vary depending on the input prompt — exposing why current condition-extraction strategies lose spatial accuracy in complex, multi-entity scenes.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<section class="section is-light" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{baron2026analysisbyproxy,
+  title     = {Analysis-by-Proxy: Localization Signals in VLMs Operating as Condition Encoders},
+  author    = {Baron, Yoav and Dorfman, Sara and Paiss, Roni and Cohen-Or, Daniel and Patashnik, Or},
+  booktitle = {ICML 2026 Workshop on Mechanistic Interpretability},
+  year      = {2026}
+}
+</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Website source code based on the <a href="https://nerfies.github.io/">Nerfies</a> project page. If you want to reuse their <a href="https://github.com/nerfies/nerfies.github.io">source code</a>, please credit them appropriately.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
